@@ -3,7 +3,7 @@
 A web-based sales and inventory management system designed to help small stores manage products, inventory, sales, and invoices efficiently.
 
 ## 🌐 Live Demo
-https://dukkan.xo.je/
+https://dukkan.xo.je/login
 
 ## ✨ Features
 
