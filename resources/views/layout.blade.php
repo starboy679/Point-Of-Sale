@@ -3,13 +3,44 @@
 
 <html lang="ar" dir="rtl">
     <head>
-        <title>POS System</title>
+        <title>Al Dukkan | الدكان </title>
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
             <style>
 
-        
+            .bg-circle{
+            pointer-events: none;
+            z-index: -1;
+            position:absolute;
+            width:400px;
+            height:400px;
+            background:rgba(201, 26, 26, 0.05);
+            border-radius:50%;
+            top:30px;
+            left:30px;
+        }
+        .bg-circle2{
+            pointer-events: none;
+            z-index: -1;
+            position:absolute;
+            width:400px;
+            height:400px;
+            background:rgba(201, 26, 26, 0.05);
+            border-radius:50%;
+            top:240px;
+            left:620px;
+        }
+        .store-name{
+            position:absolute;
+            left:70px;
+            top:50%;
+            transform:translateY(-50%);
+            font-size:90px;
+            font-weight:bold;
+            color:rgba(226, 185, 185, 0.29);
+            user-select:none;
+        }
         body{
             background:#f5f7fb;
             font-family: 'Cairo', sans-serif;
@@ -83,7 +114,8 @@
     </style>
     </head>
     <body>
-        <div class="d-flex">
+
+    <div class="d-flex">
     @auth
 
     <div class="sidebar p-3">
@@ -108,6 +140,7 @@
             if(auth()-> user()->role == 'cashier'){
                 $menu = [
                 ['name' => 'نقطة البيع', 'link' => '/pos'],
+                ['name' => 'المبيعات', 'link' => '/sales'],
                 ];
             }
             if(auth()-> user()->role == 'inventory'){
@@ -151,5 +184,7 @@
     @yield('scripts')
     </div>
 </div>
+<div class="bg-circle"><div class="store-name">الدكان</div></div>
+<div class="bg-circle2"><div class="store-name">الدكان</div></div>
 </body>
 </html>

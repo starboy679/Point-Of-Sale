@@ -32,7 +32,7 @@ class AuthController extends Controller
         }
 }
     return back()->withErrors([
-        'message' => 'Invalid credentials'
-    ]);
+        'message' => 'اسم المستخدم أو كلمة المرور غير صحيحة',
+    ])->withInput(request()->only('name'));
     }
 }

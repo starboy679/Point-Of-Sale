@@ -6,7 +6,7 @@
 
     <div class="card shadow-sm">
         <div class="card-header bg-warning text-dark">
-            <h4>تعديل المستخدم</h4>
+            <h4>تعديل المنتج</h4>
         </div>
 
         <div class="card-body">

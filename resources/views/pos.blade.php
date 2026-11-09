@@ -39,13 +39,13 @@ $products = \App\Models\Product::all();
 
                         <div class="card-body text-center">
 
-                            <h5 class="fw-bold">
+                            <h4 class="fw-bold">
                                 {{ $product->name }}
-                            </h5>
-
-                            <h4 class="text-primary mb-3">
-                                ج.س{{ $product->price }}
                             </h4>
+
+                            <h5 class="text-primary mb-3">
+                                {{ $product->price }} ج.س
+                            </h5>
 
                             <p class="text-muted">
                                 الكمية {{ $product->quantity }}

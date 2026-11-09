@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>تسجيل الدخول</title>
+    <title>Al Dukkan | الدكان </title>
 
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
@@ -169,17 +169,17 @@
 <div class="bg-circle"><div class="store-name">الدكان</div></div>
 
 <div class="bg-circle2"><div class="store-name">
-    الدكان
+    دكان
 </div></div>
 
 <div class="store-name">
-    الدكان
+  دكان
 </div>
 
 <div class="login-card">
 
     <div class="system-title">
-        نظام المبيعات
+         Dukkan | دكان 
     </div>
 
     <div class="system-sub">
@@ -189,12 +189,17 @@
     <form method="POST" action="/login">
 
         @csrf
-
+        @if ($errors->any('message'))
+            <div class="alert alert-danger text-center" role="alert">
+                {{ $errors->first('message') }}
+            </div>
+        @endif
         <input
             type="text"
             name="name"
             class="form-control"
             placeholder="اسم المستخدم"
+            value="{{ old('name') }}"
             required
         >
 
@@ -214,7 +219,7 @@
     
 
 </div>
-<div class="bg-circle3"><div class="store-name">الدكان</div></div>
+<div class="bg-circle3"><div class="store-name">دكان</div></div>
 
 </body>
 </html>

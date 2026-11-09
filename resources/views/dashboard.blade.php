@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+
 <div class="container-fluid">
     <h2 class="mb-4">لوحة التحكم</h2>
 
@@ -29,4 +30,6 @@
 
     </div>
 </div>
+
+
 @endSection

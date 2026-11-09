@@ -70,7 +70,7 @@ Route::post('/checkout', function(){
     foreach($cart as $item){
         $product = \App\Models\Product::find($item['id']);
         if($product->quantity < $item['quantity']){
-            return back()->with('error', 'Stock not enough for ' . $product->name);
+            return back()->with('error', 'الكمية غير متوفرة ل ' . $product->name);
         }
     }
     $sale = \App\Models\Sale::create([
@@ -90,13 +90,13 @@ Route::post('/checkout', function(){
         $product->save();
     }
 
-    return redirect('/pos');
+    return redirect('/sales/' . $sale->id);
 });
 
 Route::get('/sales', function(){
     $sales = \App\Models\Sale::latest()->get();
     return view('sales', compact('sales'));
-});
+})->middleware(['auth', 'role:admin,cashier']);
 
 Route::get('/sales/{id}', function($id){
 
@@ -105,7 +105,7 @@ Route::get('/sales/{id}', function($id){
     $items = \App\Models\SaleItem::where('sale_id', $id)->get();
 
     return view('sale-details', compact('sale', 'items'));
-});
+})->middleware(['auth', 'role:admin,cashier']);
 
 
 Route::get('/users', function(){
@@ -129,7 +129,7 @@ Route::post('/users', function() {
 Route::get('/users/{id}/edit', function($id){
     $user = \App\Models\User::find($id);
     return view('edit-user', compact('user'));
-})->middleware('role:admin');
+})->middleware(['auth', 'role:admin']);
 
 Route::delete('/users/{id}', function($id){
     \App\Models\User::find($id)->delete();
@@ -140,7 +140,12 @@ Route::get('/reports', function(){
     $total = \App\Models\Sale::sum('total');
     $count = \App\Models\Sale::count();
 
-    $topProducts = \App\Models\SaleItem::join('products',"products.id", '=', 'sales_items.product_id')
+    $topProducts = \App\Models\SaleItem::join(
+        'products',
+        "products.id",
+        '=',
+        'sales_items.product_id'
+        )
         ->selectRaw('products.name as product_name, SUM(sales_items.quantity) as total_qty')
         ->groupBy('products.name')
         ->orderByDesc('total_qty')
